@@ -1,30 +1,32 @@
-(defwindow powermenu
-  :monitor 0
-  :stacking "fg"
-  :exclusive true
-  :focusable false
-  :geometry (geometry)
-    :width "1%"
-    :height "100%"
-    :anchor "center"
-  (powermenu_layout))
+(defvar     bluetooth       "{}")
+(defvar     network         "{}")
+(defvar     media           "{}")
+(defvar     media_positions "{}")
+(defvar     battery         "{}")
+(defvar     notifications   "{}")
+(defvar     apps            "{}")
 
+(deflisten  window      `scripts/hyprland window`)
+(deflisten  workspaces  `scripts/hyprland workspaces`)
 
-(defwidget powermenu_layout []
-  ;; :orientation "v" means the same
-  (box :class "bx"
-    (label :text "This is a label.")
-    (button :class "btn"
-      (label
-        :text "This is a label nested inside of a button."))
-    "This is also a label."
-    ;; no orientation means horizontal
-    (box :class "nst-bx"
-      ;; NOTE: You have to write more when you use an explicit label.
-      ;;       So, in this case, I would follow a discipline to only
-      ;;       use it when I need to apply another option to it like,
-      ;;       limit-width.
-      (label :text "Hello" :limit-width 20)
-      (button :onclick "notify-send Left"
-              :onmiddleclick "notify-send Middle"
-        "Hello"))))
+(defpoll    volume      :interval "3s" :initial "{}" `scripts/volume get`)
+(defpoll    theme       :interval "3s" :initial "{}" `scripts/theme get`)
+(defpoll    power       :interval "3s" :initial "{}" `scripts/power get`)
+(defpoll    night_light :interval "3s" :initial "{}" `scripts/night_light get`)
+(defpoll    brightness  :interval "3s" :initial "{}" `scripts/brightness get`)
+
+(deflisten  events      :initial "[]" `scripts/events get`)
+(defpoll    weather     :interval "3m" :initial "[]" `scripts/weather`)
+
+(defpoll    panel_clock :interval "5s" `date "+%H:%M  |  %b. %d. %A"`)
+(defpoll    hour        :interval "5s" `date "+%H"`)
+(defpoll    minutes     :interval "5s" `date "+%M"`)
+(defpoll    date        :interval "5s" `date "+%b. %d. %A"`)
+(defpoll    uptime      :interval "60s" "uptime | awk '{print $3}' | tr ',' ' '")
+
+(defvar real_name "Demeter")
+(defvar user_name "@Aylur")
+
+(include "./yuck/widgets.yuck")
+(include "./yuck/windows.yuck")
+(include "./setups/topbar.yuck")
