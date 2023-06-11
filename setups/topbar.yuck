@@ -1,7 +1,16 @@
 (include "./yuck/windows/hbar.yuck")
 
-(defwindow bar
+(defwindow bar0
     :monitor 0
+    :exclusive true
+    :stacking "fg"
+;;    :namespace "eww_bar"
+    :geometry (geometry :width "100%"
+                        :height "1%"
+                        :anchor "center top")(hbar))
+
+(defwindow bar1
+    :monitor 1
     :exclusive true
     :stacking "fg"
 ;;    :namespace "eww_bar"

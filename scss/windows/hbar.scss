@@ -4,10 +4,10 @@
     font-size: 1.1em;
     color: $fg_color;
     background-color: $bg_color;
-    margin: $wm_gaps;
+    margin: 10px 10px 0px 10px;
     border-radius: $panel_radius;
     border-bottom: $border_width solid $popover_border_color;
-    box-shadow: 0 0 6px 0 rgba(0,0,0,0.8);
+    box-shadow: 0 0 2px 0 rgba(0,0,0,0.8);
     
     .button-bin{
         margin: 3px 2px;
