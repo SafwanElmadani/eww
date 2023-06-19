@@ -18,7 +18,7 @@
     .button{
         .icon{ font-size: 1.2em;}
         @include button($flat: true, $radii: $panel_button_radius);
-        > * { padding: 0 .7em }
+        > * { padding: 0 .9em }
 
         &.launcher{ color: $blue; }
         &.powermenu{ color: $red; }
@@ -29,9 +29,10 @@
             .workspace-btn{
                 label{ font-size: 1.2em; }
                 margin: 2px;
+                padding: 4px;
                 &.empty{ color: transparentize($fg_color, 0.34); }
-                &.occupied{ color: transparentize($fg_color, 0.18); }
-                &.active{ color: $fg_color; }
+                &.occupied{ color: $green; }
+                &.active{ color: $red;}
                 &:hover{
                     &.empty{ color: transparentize($fg_color, 0.18); }
                     &.occupied{ color: $fg_color; }
