@@ -1,22 +1,24 @@
 #!/usr/bin/env bash
 
-MON=`hyprctl monitors | awk '/Monitor/ {print $2; count++ } /active workspace:/ { if ($3 < 11) {print "mon1:" $3} if ($3 > 10) {print "mon2:" $3} } END { print "monitors:" count }' `
-
-#conver variable to an array
-arr=($MON)
-NUM_MONITORS=${arr[-1]:9}
-if [[ $NUM_MONITORS == 1 ]]; then
-MON_PORT1=${arr[0]}
-MON1_ACTIVE_WS=${arr[1]:5}
+monitor_info() {
+    MON=`hyprctl monitors | awk '/Monitor/ {print $2; count++ } /active workspace:/ { if ($3 < 11) {print "mon1:" $3} if ($3 > 10) {print "mon2:" $3} } END { print "monitors:" count }' `
+    
+    #conver variable to an array
+    arr=($MON)
+    NUM_MONITORS=${arr[-1]:9}
+    if [[ $NUM_MONITORS == 1 ]]; then
+    MON_PORT1=${arr[0]}
+    MON1_ACTIVE_WS=${arr[1]:5}
+    fi
+    
+    if [[ $NUM_MONITORS == 2 ]]; then
+    MON_PORT1=${arr[0]}
+    MON1_ACTIVE_WS=${arr[1]:5}
+    MON_PORT2=${arr[2]}
+    MON2_ACTIVE_WS=${arr[3]:5}
 fi
-
-if [[ $NUM_MONITORS == 2 ]]; then
-MON_PORT1=${arr[0]}
-MON1_ACTIVE_WS=${arr[1]:5}
-MON_PORT2=${arr[2]}
-MON2_ACTIVE_WS=${arr[3]:5}
-fi
-
+}
+monitor_info
 #NUMBER_OF_WORKSPACES=10
 
 window_class() {
@@ -28,6 +30,7 @@ window_title() {
 }
 
 spaces() {
+monitor_info
 WORKSPACES=`hyprctl workspaces -j | jq 'map({id: .id | tostring, windows: .windows, mon: .monitor})' | jq 'reduce .[] as $item ({}; .[$item.id] = $item)'`
 
 if [[ -n "$MON_PORT1" ]]; then
@@ -46,7 +49,8 @@ if [[ -n "$MON_PORT2" ]]; then
 else
      echo "{ \"workspaces1\": $MON1_WS, \"workspaces2\": [] }"
 fi
-
+#echo "ws active mon1: $MON1_ACTIVE_WS"
+#echo "ws active mon2: $MON2_ACTIVE_WS"
 }
 
 if [[ $1 == 'workspaces' ]]; then 
