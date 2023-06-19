@@ -47,7 +47,8 @@
                        :class "righBar"
                        :halign "end"
                        :space-evenly false
-                       (panel_clock))))
+                        (label :text " ⏰ ")
+                        (label :text panel_clock))))
                       
 (defwidget hbar1 [] (centerbox
                      ;;:class "hpanel ${workspaces.active_empty ? "floating" : ""}"
