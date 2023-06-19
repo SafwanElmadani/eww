@@ -47,6 +47,7 @@
                        :class "righBar"
                        :halign "end"
                        :space-evenly false
+                        (label :text "${EWW_BATTERY.BAT1.status == "Charging" ? "💡": "🔋" }${EWW_BATTERY.BAT1.capacity}%  ")
                         (label :text " ⏰ ")
                         (label :text panel_clock))))
                       
