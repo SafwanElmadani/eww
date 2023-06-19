@@ -4,17 +4,25 @@ MON=`hyprctl monitors | awk '/Monitor/ {print $2; count++ } /active workspace:/ 
 
 #conver variable to an array
 arr=($MON)
+NUM_MONITORS=${arr[-1]:9}
+if [[ $NUM_MONITORS == 1 ]]; then
+MON_PORT1=${arr[0]}
+MON1_ACTIVE_WS=${arr[1]:5}
+fi
+
+if [[ $NUM_MONITORS == 2 ]]; then
 MON_PORT1=${arr[0]}
 MON1_ACTIVE_WS=${arr[1]:5}
 MON_PORT2=${arr[2]}
 MON2_ACTIVE_WS=${arr[3]:5}
-NUM_MONITORS=${arr[4]:9}
+fi
 
-#echo $MON_PORT1
-#echo $MON_PORT2
-#echo $MON1_ACTIVE_WS
-#echo $MON2_ACTIVE_WS
-#echo $NUM_MONITORS
+
+echo $MON_PORT1
+echo $MON_PORT2
+echo $MON1_ACTIVE_WS
+echo $MON2_ACTIVE_WS
+echo $NUM_MONITORS
 
 #echo ${MON} | while IFS=" " read line; do 
 #    echo $line 
@@ -35,7 +43,11 @@ fi
 
 #echo $MON1_WS
 #echo $MON2_WS
+if [[ -n "$MON_PORT2" ]]; then
      echo "{ \"workspaces1\": $MON1_WS, \"workspaces2\": $MON2_WS }"
+else
+     echo "{ \"workspaces1\": $MON1_WS, \"workspaces2\": [] }"
+fi
 
 }
 
