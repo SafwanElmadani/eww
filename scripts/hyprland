@@ -24,12 +24,12 @@ spaces() {
 WORKSPACES=`hyprctl workspaces -j | jq 'map({id: .id | tostring, windows: .windows, mon: .monitor})' | jq 'reduce .[] as $item ({}; .[$item.id] = $item)'`
 
 if [[ -n "$MON_PORT1" ]]; then
-    MON1_WS=$(seq 1 10 | jq --argjson windows "${WORKSPACES}" --arg active_ws "$MON1_ACTIVE_WS" --arg mon_port "$MON_PORT1" --slurp  'map(tostring) | map($windows[.] // {id: ., windows: 0, mon: $mon_port}) | map(if .id==$active_ws then .active=1 else .active=0 end)')
+    MON1_WS=$(seq 1 10 | jq --argjson windows "${WORKSPACES}" -Mc --arg active_ws "$MON1_ACTIVE_WS" --arg mon_port "$MON_PORT1" --slurp  'map(tostring) | map($windows[.] // {id: ., windows: 0, mon: $mon_port}) | map(if .id==$active_ws then .active=1 else .active=0 end)')
 fi
 
 
 if [[ -n "$MON_PORT2" ]]; then
-    MON2_WS=$(seq 11 20 | jq --argjson windows "${WORKSPACES}" --arg active_ws "$MON2_ACTIVE_WS" --arg mon_port "$MON_PORT2" --slurp  'map(tostring) | map($windows[.] // {id: ., windows: 0, mon: $mon_port}) | map(if .id==$active_ws then .active=1 else .active=0 end)')
+    MON2_WS=$(seq 11 20 | jq --argjson windows "${WORKSPACES}" -Mc --arg active_ws "$MON2_ACTIVE_WS" --arg mon_port "$MON_PORT2" --slurp  'map(tostring) | map($windows[.] // {id: ., windows: 0, mon: $mon_port}) | map(if .id==$active_ws then .active=1 else .active=0 end)')
 fi
 
 #echo $MON1_WS
