@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#! /bin/bash
 
 MON=`hyprctl monitors | awk '/Monitor/ {print $2; count++ } /active workspace:/ { if ($3 < 11) {print "mon1:" $3} if ($3 > 10) {print "mon2:" $3} } END { print "monitors:" count }' `
 
@@ -10,15 +10,16 @@ MON_PORT2=${arr[2]}
 MON2_ACTIVE_WS=${arr[3]:5}
 NUM_MONITORS=${arr[4]:9}
 
-#NUMBER_OF_WORKSPACES=10
+#echo $MON_PORT1
+#echo $MON_PORT2
+#echo $MON1_ACTIVE_WS
+#echo $MON2_ACTIVE_WS
+#echo $NUM_MONITORS
 
-window_class() {
-    echo `hyprctl activewindow -j | jq --raw-output .class`
-}
-
-window_title() {
-    echo `hyprctl activewindow -j | jq --raw-output .title`
-}
+#echo ${MON} | while IFS=" " read line; do 
+#    echo $line 
+#    echo "----"
+#done
 
 spaces() {
 WORKSPACES=`hyprctl workspaces -j | jq 'map({id: .id | tostring, windows: .windows, mon: .monitor})' | jq 'reduce .[] as $item ({}; .[$item.id] = $item)'`
@@ -47,13 +48,4 @@ if [[ $1 == 'workspaces' ]]; then
 
 fi
 
-
-
-if [[ $1 == 'window' ]]; then 
-    #window_class
-    window_title
-    socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - | while read -r line; do
-        #window_class
-        window_title
-    done
-fi
+#seq 1 10 | jq --argjson windows "${WORKSPACES}" --slurp -Mc 'map(tostring) | map($windows[.])'
