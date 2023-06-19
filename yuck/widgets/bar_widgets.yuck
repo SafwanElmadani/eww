@@ -6,22 +6,37 @@
     
 
 
-(defwidget panel_workspaces [orientation] (box :class "button-bin"
-                                           (eventbox :class "button workspaces"
+(defwidget panel_workspaces0 [orientation] (box :class "button-bin"
+                                             (eventbox :class "button workspaces"
                                                (box
                                                    :space-evenly false
                                                    :orientation orientation
                                                      (for workspace in {workspaces.workspaces1}
                                                        (button
-                                                           ;;:class "workspace-btn ${workspace.active == 1 ? "active" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+                                                           :class "workspace-btn ${workspace.active == 1 ? "active" : ""}"
                                                            :onclick "hyprctl dispatch workspace ${workspace.id}"
                                                            :valign "center"
                                                            ;;(label :class "icon" :text {workspace.windows > 0 ? "${workspace.id == workspaces.active ? "" : ""}" : ""})))))))
-                                                           ;;(label :class "icon" :text {workspace.id})
-                                                           (label :class "icon" :text {workspace.active})))))))
+                                                           (label :class "icon" :text {workspace.id})))))))
+                                                           ;;(label :class "icon" :text {workspace.active})))))))
                                                            ;;(label :class "icon" :text {workspace.mon})))))))
                                                            ;;(label :class "icon" :text "3")))))))
                 
+(defwidget panel_workspaces1 [orientation] (box :class "button-bin"
+                                             (eventbox :class "button workspaces"
+                                               (box
+                                                   :space-evenly false
+                                                   :orientation orientation
+                                                     (for workspace in {workspaces.workspaces2}
+                                                       (button
+                                                           :class "workspace-btn ${workspace.active == 1 ? "active" : ""}"
+                                                           :onclick "hyprctl dispatch workspace ${workspace.id}"
+                                                           :valign "center"
+                                                           ;;(label :class "icon" :text {workspace.windows > 0 ? "${workspace.id == workspaces.active ? "" : ""}" : ""})))))))
+                                                           (label :class "icon" :text {workspace.id})))))))
+                                                           ;;(label :class "icon" :text {workspace.active})))))))
+                                                           ;;(label :class "icon" :text {workspace.mon})))))))
+                                                           ;;(label :class "icon" :text "3")))))))
             
         
     

@@ -20,34 +20,62 @@
     
 
 
-(defwidget hbar [] (centerbox
-                    ;;:class "hpanel ${workspaces.active_empty ? "floating" : ""}"
-                    :class "hpanel floating"
-                    (box
-                        :class "leftBar"
-                        :space-evenly false
-                        ;;(panel_launcher)
-                        ;;(panel_clock)
-                        (panel_workspaces :orientation "h"))
-                        ;;(panel_window :angle 0))
+(defwidget hbar0 [] (centerbox
+                     ;;:class "hpanel ${workspaces.active_empty ? "floating" : ""}"
+                     :class "hpanel floating"
+                     (box
+                         :class "leftBar"
+                         :space-evenly false
+                         ;;(panel_launcher)
+                         ;;(panel_clock)
+                         (panel_workspaces0 :orientation "h"))
+                         ;;(panel_window :angle 0))
     
-                    (box
-                        :class "centerBar"
-                        ;;(panel_media))
-                        (panel_window :angle 0))
+                     (box
+                         :class "centerBar"
+                         ;;(panel_media))
+                         (panel_window :angle 0))
     
-                    ;;(box
-                    ;;    :class "righBar"
-                    ;;    :space-evenly false
-                    ;;    :halign "end"
-                    ;;    (panel_colorpicker)
-                    ;;    (panel_system_indicators :orientation "h")
-                    ;;    (panel_powermenu))))
-                    (box 
-                      :class "righBar"
-                      :halign "end"
-                      :space-evenly false
-                      (panel_clock))))
+                     ;;(box
+                     ;;    :class "righBar"
+                     ;;    :space-evenly false
+                     ;;    :halign "end"
+                     ;;    (panel_colorpicker)
+                     ;;    (panel_system_indicators :orientation "h")
+                     ;;    (panel_powermenu))))
+                     (box 
+                       :class "righBar"
+                       :halign "end"
+                       :space-evenly false
+                       (panel_clock))))
                       
+(defwidget hbar1 [] (centerbox
+                     ;;:class "hpanel ${workspaces.active_empty ? "floating" : ""}"
+                     :class "hpanel floating"
+                     (box
+                         :class "leftBar"
+                         :space-evenly false
+                         ;;(panel_launcher)
+                         ;;(panel_clock)
+                         (panel_workspaces1 :orientation "h"))
+                         ;;(panel_window :angle 0))
+    
+                     (box
+                         :class "centerBar"
+                         ;;(panel_media))
+                         (panel_window :angle 0))
+    
+                     ;;(box
+                     ;;    :class "righBar"
+                     ;;    :space-evenly false
+                     ;;    :halign "end"
+                     ;;    (panel_colorpicker)
+                     ;;    (panel_system_indicators :orientation "h")
+                     ;;    (panel_powermenu))))
+                     (box 
+                       :class "righBar"
+                       :halign "end"
+                       :space-evenly false
+                       (panel_clock))))
     
 
