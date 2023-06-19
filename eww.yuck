@@ -18,7 +18,7 @@
 (deflisten  events      :initial "[]" `scripts/events get`)
 (defpoll    weather     :interval "3m" :initial "[]" `scripts/weather`)
 
-(defpoll    panel_clock :interval "5s" `date "+%Y-%m-%d    %A     %H:%M "`)
+(defpoll    panel_clock :interval "5s" `date "+%Y-%m-%d %A %H:%M "`)
 (defpoll    hour        :interval "5s" `date "+%H"`)
 (defpoll    minutes     :interval "5s" `date "+%M"`)
 (defpoll    date        :interval "5s" `date "+%b. %d. %A"`)
