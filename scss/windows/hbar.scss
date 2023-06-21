@@ -35,9 +35,9 @@
                 &.active{ color: $red;}
                 &:hover{
                     &.empty{ color: transparentize($fg_color, 0.18); }
-                    &.occupied{ color: $fg_color; }
+                    &.occupied{ color: $green; }
+                    &.active{ color: $red; }
                 }
-                &:active{ color: $accent; }
             }
         }
 
