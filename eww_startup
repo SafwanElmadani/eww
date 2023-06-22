@@ -3,6 +3,6 @@
 killall eww
 
 eww open --toggle bar0
-eww open --toggle bar1
+#eww open --toggle bar1
 eww open --toggle desktop0
-eww open --toggle desktop1
+#eww open --toggle desktop1
